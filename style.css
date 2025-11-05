@@ -94,6 +94,17 @@ nav .navlinks a.active {
   margin-top: -5px;
 }
 
+/* === ANGLED DIVIDER === */
+.angled-divider {
+  width: 100%;
+  height: 120px; /* height of the angled divider */
+  background-color: #182241; /* matches footer */
+  clip-path: polygon(0 25%, 0% 0, 100% 100%, 0% 100%);
+  margin-top: 0;
+}
+
+
+
 /* === FOOTER === */
 footer {
   background-color: #182241;
@@ -203,11 +214,12 @@ footer a {
 
 .about-container {
   display: flex;
-  align-items: center;
+  align-items: flex-start; /* move image higher */
   justify-content: space-between;
   max-width: 1200px;
   width: 100%;
   gap: 60px;
+  margin: 0 auto;
 }
 
 .about-text {
@@ -226,19 +238,23 @@ footer a {
   margin-top: 40px;
 }
 
+
 .about-image {
-  flex: 1;
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: column;
+  align-items: center; /* center the button under the image */
+  gap: 25px;
+  transform: translateY(-30px); /* lift image & button slightly higher */
 }
 
 .about-image img {
   width: 100%;
   max-width: 400px;
+  height: auto;
   border-radius: 8px;
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.25);
   object-fit: cover;
+  display: block;
 }
 
 /* Make responsive for smaller screens */
@@ -256,4 +272,381 @@ footer a {
   .about-text {
     text-align: center;
   }
+}
+
+
+/* === SKILLS SECTION === */
+.skills-section {
+  text-align: center;
+  padding: 15px 40px 80px; /* top right/left bottom */
+  background-color: #7B949C;
+  color: #182241;
+}
+
+
+.skills-section h2 {
+  font-size: 2rem;
+  margin-bottom: 60px;
+  color: #182241;
+}
+
+/* grid layout — 4 cards per row */
+.skills-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 40px;
+  max-width: 1100px;
+  margin: 0 auto;
+}
+
+/* each card box */
+.skill-card {
+  background-color: #FFFFFF;
+  border-radius: 20px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* hover animation */
+.skill-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
+}
+
+/* equal-size icons */
+.skill-card img {
+  width: 160px;
+  height: 160px;
+  object-fit: contain;
+  margin-bottom: 2px;
+}
+
+/* label text */
+.skill-card p {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: #182241;
+  margin: 0;
+}
+
+/* responsive: stacks into 2 per row on smaller screens */
+@media (max-width: 900px) {
+  .skills-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 500px) {
+  .skills-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+
+/* === PROJECTS PAGE GRID === */
+.projects {
+  padding: 15px 40px 100px;
+  background-color: #7b949c;
+  text-align: center;
+  color: #182241;
+}
+
+.projects h2 {
+  font-size: 2.3rem;
+  margin-bottom: 60px;
+  color: #182241;
+}
+
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* 👈 Force 4 cards in one row */
+  gap: 40px;
+  max-width: 1600px; /* 👈 Expand width slightly so all 4 fit */
+  margin: 0 auto;
+  justify-content: center;
+}
+
+.project-card {
+  position: relative;
+  border-radius: 8px;
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(0, 0, 0, 0.25);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.35);
+}
+
+.project-card img {
+  width: 100%;
+  height: 380px;
+  object-fit: cover;
+  opacity: 0.9;
+  transition: opacity 0.3s ease;
+}
+
+.project-card:hover img {
+  opacity: 0.6;
+}
+
+.project-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: rgba(255, 245, 217, 0.85);
+  padding: 20px;
+  text-align: center;
+}
+
+.project-overlay h3 {
+  font-size: 1.6rem;
+  color: #182241;
+  margin: 0;
+}
+
+
+/* === PROJECT PAGE STYLES === */
+/* === HERO WITH BACKGROUND IMAGE === */
+.project-hero {
+  position: relative;
+  width: 100%;
+  height: 450px; /* adjust height if needed */
+  overflow: hidden;
+}
+
+.project-hero .hero-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.35; /* lower opacity for readability */
+  z-index: 0;
+}
+
+.project-hero .hero-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.25); /* subtle dark tint */
+  z-index: 1;
+}
+
+.project-hero .hero-content {
+  position: absolute;
+  bottom: 30px; /* distance from bottom edge */
+  left: 60px;   /* distance from left edge */
+  z-index: 2;
+  color: #ffffff;
+  text-align: left;
+}
+
+.project-hero h1 {
+  font-size: 2.8rem;
+  font-weight: 700;
+  margin: 0;
+  color: #ffffff;
+}
+
+.project-hero p {
+  font-size: 1.2rem;
+  color: #f0f0f0;
+  margin-top: 10px;
+}
+
+
+.project-details {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* vertically center both columns */
+  gap: 80px;
+  padding: 60px 160px;
+}
+
+/* Text column */
+.project-details .text {
+  flex: 1.2;
+  font-size: 1.1rem;
+  line-height: 1.8;
+  color: #0e2230;
+}
+
+/* Button column */
+.project-details .buttons {
+  flex: 0.6;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 25px;
+}
+
+/* Buttons themselves */
+.btn-large {
+  display: inline-block;
+  background-color: #2f4156;
+  color: #fffbea;
+  text-decoration: none;
+  font-weight: 600;
+  font-size: 1.1rem;
+  padding: 18px 50px;
+  border-radius: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, background-color 0.3s ease;
+}
+
+.btn-large:hover {
+  background-color: #213548;
+  transform: scale(1.05);
+}
+
+/* Make it responsive */
+@media (max-width: 900px) {
+  .project-details {
+    flex-direction: column;
+    text-align: center;
+    padding: 40px 40px;
+  }
+
+  .project-details .buttons {
+    margin-top: 40px;
+  }
+}
+
+
+
+.project-description {
+  flex: 2;
+  color: #182241;
+  font-size: 1.1rem;
+  line-height: 1.7;
+}
+
+.project-buttons {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+  align-items: flex-end;
+}
+
+.project-preview {
+  background-color: #7b949c;
+  text-align: center;
+  padding-bottom: 100px;
+}
+
+.project-preview img {
+  width: 80%;
+  max-width: 1300px;
+  border-radius: 6px;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.25);
+  transition: transform 0.3s ease;
+}
+
+.project-preview img:hover {
+  transform: scale(1.02);
+}
+
+.project-preview p {
+  margin-top: 15px;
+  font-size: 0.95rem;
+  color: #182241;
+}
+
+.image-slider {
+  position: relative;
+  max-width: 80%;
+  margin: 50px auto 80px auto;
+  overflow: hidden;
+  border-radius: 12px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+  background-color: transparent; /* remove extra white/gray */
+}
+
+/* Flex container for slides */
+.slides {
+  display: flex;
+  width: 100%;
+  transition: transform 0.6s ease;
+}
+
+.slides a {
+  flex: 0 0 100%;
+  display: flex;
+  justify-content: center;
+  align-items: flex-start; /* keep image aligned to top, not centered vertically */
+  height: auto;
+}
+
+.slides a img {
+  display: block;
+  width: 80%;            /* fills nicely without touching edges */
+  height: auto;
+  max-height: 80vh;      /* ensures it fits the viewport */
+  object-fit: contain;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+  background: none;
+  margin: 0 auto;        /* centers image horizontally */
+}
+
+
+.slides a img:hover {
+  transform: scale(1.02);
+}
+
+/* Arrows */
+.slider-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.45);
+  color: #fff;
+  font-size: 2.8rem;
+  border: none;
+  padding: 14px 22px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  z-index: 10;
+}
+
+.slider-btn:hover {
+  background-color: rgba(0, 0, 0, 0.65);
+}
+
+.prev {
+  left: 25px;
+}
+
+.next {
+  right: 25px;
+}
+
+.slider-caption {
+  text-align: center;
+  margin-top: 60px;
+  margin-bottom: 20px;
+}
+
+.slider-caption p {
+  font-size: 1.2rem;
+  color: #1c2e3a;
+  letter-spacing: 0.5px;
+  font-weight: 500;
+  opacity: 0.8;
 }
